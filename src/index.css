@@ -1,0 +1,190 @@
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-primary-50: #f4f2ff;
+  --color-primary-100: #ebe7ff;
+  --color-primary-200: #d8d1ff;
+  --color-primary-300: #bdb1fb;
+  --color-primary-400: #9a89f2;
+  --color-primary-500: #5f57c4;
+  --color-primary-600: #4b44a3;
+  --color-primary-700: #3e3886;
+  --color-primary-800: #34306d;
+  --color-primary-900: #2d2a5b;
+}
+
+:root {
+  --Primary: #5f57c4;
+  --Hover: #4b44a3;
+  --Pressed: #3e3886;
+  --subtle: #f7f6fb;
+  --Border: #ecebf3;
+  --ink: #0e0e12;
+  --muted: #6b6a85;
+  --faint: #9a99aa;
+  --surface: #fbfbfe;
+  --white: #ffffff;
+  --success: #2fa36b;
+  --warning: #e5a23b;
+  --danger: #e35d63;
+  --info: #2962ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-canvas {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% -8%, rgba(169, 163, 245, 0.2), transparent 32rem),
+    radial-gradient(circle at 96% 0%, rgba(216, 209, 255, 0.18), transparent 28rem),
+    linear-gradient(180deg, #fbfbfe 0%, #f7f5ff 100%);
+}
+
+@media (max-width: 380px) {
+  .app-canvas {
+    background: linear-gradient(180deg, #fbfbfe 0%, #f7f5ff 100%);
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--Primary);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #d8d1ff;
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9d7e8;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hatch-pattern {
+  background-color: #f5f3ff;
+  background-image: repeating-linear-gradient(45deg, #ddd6fe 0 1px, transparent 1px 9px);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f3f1fb 25%, #ffffff 50%, #f3f1fb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.2s ease-out both;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

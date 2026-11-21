@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lilac-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: erp_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lilac_dev_password}
+      POSTGRES_INITDB_ARGS: --data-checksums
+      TZ: UTC
+    command:
+      - postgres
+      - -c
+      - timezone=UTC
+      - -c
+      - log_statement=ddl
+      - -c
+      - password_encryption=scram-sha-256
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    volumes:
+      - lilac_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d erp_platform"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  lilac_pgdata:
+    name: lilac_pgdata
